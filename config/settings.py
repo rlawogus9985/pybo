@@ -25,7 +25,7 @@ SECRET_KEY = 'trr%v_@d$_f#(ntzi%i4r91zr1c2jl16+tcy&&%nbbss@js#s('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['52.78.36.111']
 
 
 # Application definition
