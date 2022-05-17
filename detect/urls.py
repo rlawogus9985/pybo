@@ -7,6 +7,7 @@ app_name = 'detect'
 
 urlpatterns = [
     path('', views.uploadFile, name='uploadFile'),
+    path('delete/<int:document_id>/', views.file_delete, name='file_delete'),
 ]
 
 if settings.DEBUG:
