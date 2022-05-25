@@ -51,8 +51,8 @@
         </tr>
         {% for file in files %}
             <tr>
-                <td>{{ file.id }}</td>
-                <td>{{ file.title }}</td>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="/detect/{{ file.id }}/">{{ file.title }}</a></td>
                 <td>{{ file.uploadedFile.url }}</td>
                 <td>{{ file.dateTimeOfUpload }}</td>
                 <td><a href="/detect/delete/{{ file.id }}"

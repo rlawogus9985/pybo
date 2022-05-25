@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ question.title }}</h1>
+<!--    <h1>{{ question.uploadedFile.url }}</h1>-->
+<!--    <h1>{{ question.uploadedFile.path }}</h1>-->
+    <div>
+<!--        <img src="/static/img/Fire.jpg" alt="실패">-->
+        <img src="{{ question.uploadedFile.url }}" alt="실패">
+    </div>
+    <h1>정확도 : {{ number }}%</h1>
+</body>
+</html>
