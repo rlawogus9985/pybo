@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=dege">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django File Upload</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        * {
+            font-family: "roboto";
+        }
+
+        body {
+            background-color : #F5F5F5;
+        }
+
+        form {
+            background-color: #FFFFFF;
+            padding: 25px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: #FFFFFF;
+        }
+
+        table tr td {
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'detect:uploadFile' %}" method="POST" enctype="multipart/form-data">
+        <input type="text" name="fileTitle" placeholder="Enter a title">
+        <input type="file" name="uploadedFile">
+        {% csrf_token %}
+        <input type="submit" value="Upload">
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>File Path</th>
+            <th>Upload Date & Time</th>
+            <th>Delete</th>
+        </tr>
+        {% for file in files %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="/detect/{{ file.id }}/">{{ file.title }}</a></td>
+                <td>{{ file.uploadedFile.url }}</td>
+                <td>{{ file.dateTimeOfUpload }}</td>
+                <td><a href="/detect/delete/{{ file.id }}"
+                       class="delete btn btn-sm btn-outline-secondary"
+                       >삭제</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
+{% endblock %}
+
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
+{% endblock %}
